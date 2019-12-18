@@ -43,7 +43,8 @@ export default {
     return {
       loginForm: {
         username: '',
-        password: ''
+        password: '',
+        rememberme: false
       },
       responseResult: []
     }
@@ -56,7 +57,8 @@ export default {
       this.$axios
         .post('/login', {
           username: this.loginForm.username,
-          password: this.loginForm.password
+          password: this.loginForm.password,
+          rememberme: this.loginForm.rememberme
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
@@ -65,11 +67,15 @@ export default {
             var path = this.$route.query.redirect
             this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
           } else {
-            alert(successResponse.data.message)
+            this.$alert(successResponse.data.message, '提示', {
+              confirmButtonText: '确定'
+            })
           }
         })
         .catch(failResponse => {
-          alert('系统繁忙，请稍后再试')
+          this.$alert(failResponse.data.message, '提示', {
+            confirmButtonText: '确定'
+          })
         })
     }
   }

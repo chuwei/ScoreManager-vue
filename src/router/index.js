@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import Register from '@/components/Register'
+
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +17,11 @@ export default new Router({
       meta: {
         requireAuth: true
       }
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
     {
       path: '/home',
