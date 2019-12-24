@@ -11,6 +11,11 @@
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="请输入密码"></el-input>
     </el-form-item>
+    <el-col :span="4">
+      <el-form-item>
+        <el-checkbox class="grid-content bg-purple" v-model="loginForm.rememberme">remember me</el-checkbox>
+      </el-form-item>
+    </el-col>
     <el-form-item style="width: 100%">
       <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
     </el-form-item>
@@ -27,13 +32,11 @@
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
   }
-
   .login_title {
     margin: 0px auto 40px auto;
     text-align: center;
     color: #505458;
   }
-
 </style>
 
 <script>
