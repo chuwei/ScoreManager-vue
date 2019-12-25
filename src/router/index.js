@@ -6,6 +6,7 @@ import Home from '@/components/Home'
 import AdminIndex from '../components/admin/AdminIndex'
 import Register from '@/components/Register'
 import NotFound from '@/components/NotFound'
+import DashBoard from '../components/admin/dashboard/admin/index'
 
 Vue.use(Router)
 
@@ -64,7 +65,8 @@ export default new Router({
       meta: {
         title: '页面走丢了'
       }
-    }, {
+    },
+    {
       path: '*', // 此处需特别注意置于最底部
       redirect: '/404'
     }
@@ -79,38 +81,6 @@ export const createRouter = routes => new Router({
       name: 'Default',
       redirect: '/home',
       component: Home
-    },
-    {
-      // home页面并不需要被访问，只是作为其它组件的父组件
-      path: '/home',
-      name: 'Home',
-      component: Home,
-      redirect: '/index',
-      children: [
-        {
-          path: '/index',
-          name: 'AppIndex',
-          component: AppIndex
-        // },
-        // {
-        //   path: '/jotter',
-        //   name: 'Jotter',
-        //   component: JotterIndex
-        // },
-        // {
-        //   path: '/editor',
-        //   name: 'Editor',
-        //   component: Editor,
-        //   meta: {
-        //     requireAuth: true
-        //   }
-        // },
-        // {
-        //   path: '/library',
-        //   name: 'Library',
-        //   component: LibraryIndex
-        }
-      ]
     },
     {
       path: '/login',
@@ -131,12 +101,12 @@ export const createRouter = routes => new Router({
       },
       children: [
         {
-          // path: '/admin/dashboard',
-          // name: 'dashboard',
-          // component: DashBoard,
-          // meta: {
-          //   requireAuth: true
-          // }
+          path: '/admin/dashboard',
+          name: 'dashboard',
+          component: DashBoard,
+          meta: {
+            requireAuth: true
+          }
         }
       ]
     }
